@@ -1,0 +1,2 @@
+include README.rst LICENSE HISTORY.rst requirements.txt
+recursive-include readtime *.py

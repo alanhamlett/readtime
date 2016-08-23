@@ -1,0 +1,8 @@
+[run]
+branch = false
+omit =
+    readtime/__about__.py
+[report]
+omit =
+    readtime/__about__.py
+    */python?.?/*
