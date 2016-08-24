@@ -23,6 +23,7 @@ from ._compat import u
 
 
 READING_SPEED = 265
+WORD_DELIMITER = re.compile(r'\W+')
 
 
 def read_time(content, format=None):
@@ -65,9 +66,10 @@ def read_time_as_seconds(text, images=0):
     """
 
     try:
-        num_words = len(text.split())
-    except AttributeError:
+        num_words = len(re.split(WORD_DELIMITER, text.strip()))
+    except (AttributeError, TypeError):
         num_words = 0
+
     seconds = int(math.ceil(num_words / READING_SPEED * 60))
 
     # add extra seconds for inline images
