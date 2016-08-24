@@ -3,6 +3,12 @@ History
 -------
 
 
+1.0.3 (2016-08-24)
+++++++++++++++++++
+
+- Split words on any non-word character, to match Medium formula.
+
+
 1.0.2 (2016-08-24)
 ++++++++++++++++++
 
