@@ -63,7 +63,10 @@ def read_time_as_seconds(text, images=0):
     :param images: The number of inline images in the text.
     """
 
-    num_words = len(text.split())
+    try:
+        num_words = len(text.split())
+    except AttributeError:
+        num_words = 0
     seconds = int(round(num_words / READING_SPEED * 60))
 
     # add extra seconds for inline images

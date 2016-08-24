@@ -21,6 +21,18 @@ class BaseTestCase(unittest.TestCase):
         self.assertEquals(result.text, u('3 min'))
         self.assertEquals(u(result), u('3 min read'))
 
+    def test_plain_text_empty(self):
+        result = readtime.of_text('')
+        self.assertEquals(result.seconds, 0)
+        self.assertEquals(result.text, u('1 min'))
+        self.assertEquals(u(result), u('1 min read'))
+
+    def test_plain_text_null(self):
+        result = readtime.of_text(None)
+        self.assertEquals(result.seconds, 0)
+        self.assertEquals(result.text, u('1 min'))
+        self.assertEquals(u(result), u('1 min read'))
+
     def test_markdown(self):
         inp = open('tests/samples/markdown.md').read()
         result = readtime.of_markdown(inp)
