@@ -13,6 +13,7 @@
 from __future__ import division
 
 import lxml
+import math
 import markdown2
 import re
 from pyquery import PyQuery as pq
@@ -21,7 +22,7 @@ from .result import Result
 from ._compat import u
 
 
-READING_SPEED = 275
+READING_SPEED = 265
 
 
 def read_time(content, format=None):
@@ -67,7 +68,7 @@ def read_time_as_seconds(text, images=0):
         num_words = len(text.split())
     except AttributeError:
         num_words = 0
-    seconds = int(round(num_words / READING_SPEED * 60))
+    seconds = int(math.ceil(num_words / READING_SPEED * 60))
 
     # add extra seconds for inline images
     delta = 12

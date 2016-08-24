@@ -8,16 +8,21 @@ from .utils import unittest, u, unicode
 
 class BaseTestCase(unittest.TestCase):
 
-    def test_plain_text_simple(self):
-        result = readtime.of_text('Some simple text')
-        self.assertEquals(result.seconds, 1)
-        self.assertEquals(result.text, u('1 min'))
-        self.assertEquals(u(result), u('1 min read'))
+    def test_transitions(self):
+        word = 'word '
+        for x in range(10):
+            text = word * 265 * x
+            result = readtime.of_text(text)
+            self.assertEquals(result.seconds, x * 60)
+            if x == 0:
+                x = 1
+            self.assertEquals(result.text, u('{0} min'.format(x)))
+            self.assertEquals(u(result), u('{0} min read'.format(x)))
 
     def test_plain_text(self):
         inp = open('tests/samples/plain_text.txt').read()
         result = readtime.of_text(inp)
-        self.assertEquals(result.seconds, 127)
+        self.assertEquals(result.seconds, 133)
         self.assertEquals(result.text, u('3 min'))
         self.assertEquals(u(result), u('3 min read'))
 
@@ -36,14 +41,14 @@ class BaseTestCase(unittest.TestCase):
     def test_markdown(self):
         inp = open('tests/samples/markdown.md').read()
         result = readtime.of_markdown(inp)
-        self.assertEquals(result.seconds, 210)
+        self.assertEquals(result.seconds, 215)
         self.assertEquals(result.text, u('4 min'))
         self.assertEquals(u(result), u('4 min read'))
 
     def test_html(self):
         inp = open('tests/samples/html.html').read()
         result = readtime.of_html(inp)
-        self.assertEquals(result.seconds, 210)
+        self.assertEquals(result.seconds, 215)
         self.assertEquals(result.text, u('4 min'))
         self.assertEquals(u(result), u('4 min read'))
 
