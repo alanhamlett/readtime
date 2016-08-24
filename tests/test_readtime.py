@@ -18,8 +18,8 @@ class BaseTestCase(unittest.TestCase):
         inp = open('tests/samples/plain_text.txt').read()
         result = readtime.of_text(inp)
         self.assertEquals(result.seconds, 127)
-        self.assertEquals(result.text, u('2 min'))
-        self.assertEquals(u(result), u('2 min read'))
+        self.assertEquals(result.text, u('3 min'))
+        self.assertEquals(u(result), u('3 min read'))
 
     def test_markdown(self):
         inp = open('tests/samples/markdown.md').read()

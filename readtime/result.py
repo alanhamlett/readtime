@@ -12,6 +12,8 @@
 
 from __future__ import division
 
+import math
+
 from ._compat import u
 
 
@@ -22,7 +24,7 @@ class Result(object):
 
     def __init__(self, seconds):
         self.seconds = seconds
-        self.minutes = int(round(seconds / 60))
+        self.minutes = int(math.ceil(seconds / 60))
         if self.minutes < 1:
             self.minutes = 1
         self.text = u('{0} min').format(self.minutes)
