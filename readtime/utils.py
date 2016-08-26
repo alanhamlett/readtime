@@ -21,8 +21,7 @@ from pyquery import PyQuery as pq
 from .result import Result
 from ._compat import u
 
-
-READING_SPEED = 265
+READING_SPEED = 265  # Medium says they use 275 WPM but they actually use 265
 WORD_DELIMITER = re.compile(r'\W+')
 
 
