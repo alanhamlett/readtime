@@ -12,7 +12,7 @@ class BaseTestCase(unittest.TestCase):
         word = 'word '
         for x in range(10):
 
-            # test the maximum num words for x min read
+            # test the maximum num words for x read time
             text = word * 265 * x
             result = readtime.of_text(text)
             self.assertEquals(result.seconds, x * 60 if x > 0 else 1)
