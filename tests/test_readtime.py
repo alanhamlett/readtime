@@ -11,15 +11,20 @@ class BaseTestCase(unittest.TestCase):
     def test_transitions(self):
         word = 'word '
         for x in range(10):
+
+            # test the maximum num words for x min read
             text = word * 265 * x
             result = readtime.of_text(text)
-            if x == 0:
-                x = 1
-                self.assertEquals(result.seconds, x)
-            else:
-                self.assertEquals(result.seconds, x * 60)
-            self.assertEquals(result.text, u('{0} min'.format(x)))
-            self.assertEquals(u(result), u('{0} min read'.format(x)))
+            self.assertEquals(result.seconds, x * 60 if x > 0 else 1)
+            self.assertEquals(result.text, u('{0} min'.format(x if x > 0 else 1)))
+            self.assertEquals(u(result), u('{0} min read'.format(x if x > 0 else 1)))
+
+            # test the maximum + 1 num words, and make sure read time is x + 1
+            text += 'word'
+            result = readtime.of_text(text)
+            self.assertEquals(result.seconds, x * 60 + 1)
+            self.assertEquals(result.text, u('{0} min'.format(x + 1)))
+            self.assertEquals(u(result), u('{0} min read'.format(x + 1)))
 
     def test_plain_text(self):
         inp = open('tests/samples/plain_text.txt').read()
