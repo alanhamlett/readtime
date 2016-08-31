@@ -1,5 +1,5 @@
 [run]
-branch = false
+branch = true
 omit =
     readtime/__about__.py
 [report]
