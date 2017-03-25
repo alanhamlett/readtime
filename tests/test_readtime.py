@@ -30,6 +30,7 @@ class BaseTestCase(unittest.TestCase):
         inp = open('tests/samples/plain_text.txt').read()
         result = readtime.of_text(inp)
         self.assertEquals(result.seconds, 154)
+        self.assertEquals(type(result.seconds), int)
         self.assertEquals(result.text, u('3 min'))
         self.assertEquals(u(result), u('3 min read'))
 
@@ -72,3 +73,18 @@ class BaseTestCase(unittest.TestCase):
         with self.assertRaises(Exception) as e:
             readtime.utils.read_time('Some simple text', format=123)
         self.assertEquals(str(e.exception), 'Unsupported format: 123')
+
+    def test_can_add(self):
+        inp = open('tests/samples/plain_text.txt').read()
+        result1 = readtime.of_text(inp)
+        self.assertEquals(result1.seconds, 154)
+
+        inp = open('tests/samples/markdown.md').read()
+        result2 = readtime.of_markdown(inp)
+        self.assertEquals(result2.seconds, 236)
+
+        result = (result1 + result2)
+        self.assertEquals(result.seconds, 154 + 236)
+        self.assertEquals(type(result.seconds), int)
+        self.assertEquals(result.text, u('7 min'))
+        self.assertEquals(u(result), u('7 min read'))

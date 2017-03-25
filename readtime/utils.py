@@ -54,7 +54,7 @@ def read_time(content, format=None):
     else:
         raise Exception(u('Unsupported format: {0}').format(format))
 
-    return Result(seconds)
+    return Result(seconds=seconds)
 
 
 def read_time_as_seconds(text, images=0):
