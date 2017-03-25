@@ -37,7 +37,7 @@ class Result(object):
 
     @property
     def seconds(self):
-        return int(self.delta.total_seconds())
+        return int(self.total_seconds(self.delta))
 
     @property
     def minutes(self):
@@ -49,6 +49,12 @@ class Result(object):
     @property
     def text(self):
         return u('{minutes} min').format(minutes=self.minutes)
+
+    def total_seconds(self, delta):
+        """timedelta.total_seconds for Python2.6 compatibility."""
+
+        return ((delta.microseconds + (delta.seconds + delta.days*24*3600)
+                * 1e6) / 1e6)
 
     def add_operator_methods(self):
         for op in dir(operator):
@@ -65,5 +71,5 @@ class Result(object):
         fn = getattr(self.delta, op)
         def method(cls, other, *args, **kwargs):
             delta = fn(other.delta)
-            return Result(delta.total_seconds())
+            return Result(self.total_seconds(delta))
         return method
