@@ -3,6 +3,12 @@ History
 -------
 
 
+1.0.4 (2017-03-25)
+++++++++++++++++++
+
+- Support operations (addition, subtraction, etc) on results. #2
+
+
 1.0.3 (2016-08-24)
 ++++++++++++++++++
 
