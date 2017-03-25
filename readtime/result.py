@@ -16,7 +16,7 @@ import math
 import operator
 from datetime import timedelta
 
-from ._compat import u
+from ._compat import u, IS_PY2
 
 
 class Result(object):
@@ -27,13 +27,16 @@ class Result(object):
         self.add_operator_methods()
 
     def __repr__(self):
-        return self.text + ' read'
+        return u(self.text + ' read')
 
     def __unicode__(self):
         return self.__repr__()  # pragma: nocover
 
     def __str__(self):
-        return u(self).encode('utf-8')
+        if IS_PY2:
+            return self.__repr__().encode('utf-8')
+        else:
+            return self.__repr__()
 
     @property
     def seconds(self):
