@@ -24,7 +24,7 @@ class Result(object):
 
     def __init__(self, seconds):
         self.delta = timedelta(seconds=seconds)
-        self.add_operator_methods()
+        self._add_operator_methods()
 
     def __repr__(self):
         return u(self.text + ' read')
@@ -59,18 +59,18 @@ class Result(object):
         return ((delta.microseconds + (delta.seconds + delta.days*24*3600)
                 * 1e6) / 1e6)
 
-    def add_operator_methods(self):
+    def _add_operator_methods(self):
         for op in dir(operator):
             if (getattr(self.__class__, op, None) is None
                 and getattr(self.delta, op, None) is not None
                 and op.startswith('__')
                 and op.endswith('__')):
                 try:
-                    setattr(self.__class__, op, self.create_method(op))
+                    setattr(self.__class__, op, self._create_method(op))
                 except (AttributeError, TypeError):
                     pass
 
-    def create_method(self, op):
+    def _create_method(self, op):
         fn = getattr(self.delta, op)
         def method(cls, other, *args, **kwargs):
             delta = fn(other.delta)
