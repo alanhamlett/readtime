@@ -3,7 +3,9 @@
 
 import readtime
 
-from .utils import unittest, u, unicode
+import unittest
+
+from .utils import u, unicode
 
 
 class BaseTestCase(unittest.TestCase):

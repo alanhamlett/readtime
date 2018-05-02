@@ -2,13 +2,6 @@
 
 import sys
 
-try:
-    # Python 2.6
-    import unittest2 as unittest
-except ImportError:
-    # Python >= 2.7
-    import unittest
-
 
 is_py2 = (sys.version_info[0] == 2)
 is_py3 = (sys.version_info[0] == 3)
