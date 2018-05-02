@@ -2,7 +2,7 @@ __title__ = 'readtime'
 __description__ = 'Calculates the time some text takes the average human to ' \
                   'read, based on Medium\'s read time forumula'
 __url__ = 'https://github.com/alanhamlett/readtime'
-__version_info__ = ('1', '0', '5')
+__version_info__ = ('1', '0', '6')
 __version__ = '.'.join(__version_info__)
 __author__ = 'Alan Hamlett'
 __author_email__ = 'alan.hamlett@gmail.com'
