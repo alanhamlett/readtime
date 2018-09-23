@@ -92,6 +92,7 @@ def parse_html(el):
     text = []
     images = []
     paragraphs = ['h1', 'h2', 'h3', 'h4', 'h5']
+
     def add_text(tag, no_tail=False):
         if tag.tag == 'img':
             images.append(tag)
