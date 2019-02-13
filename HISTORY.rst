@@ -3,6 +3,13 @@ History
 -------
 
 
+1.1.0 (2019-02-13)
+++++++++++++++++++
+
+- Ability to customize wpm.
+  `#4 <https://github.com/alanhamlett/readtime/issues/4>`_
+
+
 1.0.6 (2018-05-01)
 ++++++++++++++++++
 
