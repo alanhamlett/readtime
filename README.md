@@ -50,11 +50,23 @@ The result can also be used as a string:
 
 To calculate read time of Markdown:
 
-    readtime.of_markdown('This is **Markdown**')
+    >>> readtime.of_markdown('This is **Markdown**')
+    1 min read
 
 To calculate read time of HTML:
 
-    readtime.of_html('This is <strong>HTML</strong>')
+    >>> readtime.of_html('This is <strong>HTML</strong>')
+    1 min read
+
+To customize the WPM (default 265):
+
+    >>> result = readtime.of_text('The shortest blog post in the world!', wpm=5)
+    >>> result.seconds
+    96
+    >>> result.text
+    u'2 min'
+    >>> result.wpm
+    5
 
 
 ### Contributing

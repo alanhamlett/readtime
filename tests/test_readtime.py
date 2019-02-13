@@ -6,6 +6,7 @@ import readtime
 import unittest
 
 from .utils import u, unicode
+from readtime.utils import DEFAULT_WPM
 
 
 class BaseTestCase(unittest.TestCase):
@@ -90,3 +91,17 @@ class BaseTestCase(unittest.TestCase):
         self.assertEquals(type(result.seconds), int)
         self.assertEquals(result.text, u('7 min'))
         self.assertEquals(u(result), u('7 min read'))
+
+    def test_custom_wpm(self):
+        text = 'some test content ' * 100
+        result = readtime.of_text(text)
+        self.assertEquals(result.wpm, DEFAULT_WPM)
+        self.assertEquals(result.seconds, 68)
+        self.assertEquals(result.text, u('2 min'))
+        wpm = 50
+        result = readtime.of_text(text, wpm=wpm)
+        self.assertEquals(result.wpm, wpm)
+        self.assertEquals(result.seconds, 360)
+        self.assertEquals(type(result.seconds), int)
+        self.assertEquals(result.text, u('6 min'))
+        self.assertEquals(u(result), u('6 min read'))

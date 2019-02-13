@@ -21,11 +21,11 @@ from pyquery import PyQuery as pq
 from .result import Result
 from ._compat import u
 
-READING_SPEED = 265  # Medium says they use 275 WPM but they actually use 265
+DEFAULT_WPM = 265  # Medium says they use 275 WPM but they actually use 265
 WORD_DELIMITER = re.compile(r'\W+')
 
 
-def read_time(content, format=None):
+def read_time(content, format=None, wpm=None):
     """Returns the read time of some content.
 
     :param content: String of content.
@@ -37,39 +37,45 @@ def read_time(content, format=None):
     except:
         pass
 
+    if not wpm:
+        wpm = DEFAULT_WPM
+
     if format == 'text':
-        seconds = read_time_as_seconds(content)
+        seconds = read_time_as_seconds(content, wpm=wpm)
 
     elif format == 'markdown':
         html = markdown2.markdown(content)
         el = pq(html)
         text, images = parse_html(el)
-        seconds = read_time_as_seconds(text, images=images)
+        seconds = read_time_as_seconds(text, images=images, wpm=wpm)
 
     elif format == 'html':
         el = pq(content)
         text, images = parse_html(el)
-        seconds = read_time_as_seconds(text, images=images)
+        seconds = read_time_as_seconds(text, images=images, wpm=wpm)
 
     else:
         raise Exception(u('Unsupported format: {0}').format(format))
 
-    return Result(seconds=seconds)
+    return Result(seconds=seconds, wpm=wpm)
 
 
-def read_time_as_seconds(text, images=0):
+def read_time_as_seconds(text, images=0, wpm=None):
     """Returns the read time as seconds of some plain text.
 
     :param text:   String of plain text.
     :param images: The number of inline images in the text.
     """
 
+    if not wpm:
+        wpm = DEFAULT_WPM
+
     try:
         num_words = len(re.split(WORD_DELIMITER, text.strip()))
     except (AttributeError, TypeError):
         num_words = 0
 
-    seconds = int(math.ceil(num_words / READING_SPEED * 60))
+    seconds = int(math.ceil(num_words / wpm * 60))
 
     # add extra seconds for inline images
     delta = 12

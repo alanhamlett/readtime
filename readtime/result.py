@@ -22,7 +22,8 @@ from ._compat import u, IS_PY2
 class Result(object):
     delta = None
 
-    def __init__(self, seconds):
+    def __init__(self, seconds=None, wpm=None):
+        self.wpm = wpm
         self.delta = timedelta(seconds=seconds)
         self._add_operator_methods()
 
@@ -56,15 +57,15 @@ class Result(object):
     def total_seconds(self, delta):
         """timedelta.total_seconds for Python2.6 compatibility."""
 
-        return ((delta.microseconds + (delta.seconds + delta.days*24*3600)
-                * 1e6) / 1e6)
+        return ((delta.microseconds + (delta.seconds + delta.days * 24 * 3600) * 1e6) / 1e6)
 
     def _add_operator_methods(self):
         for op in dir(operator):
-            if (getattr(self.__class__, op, None) is None
-                and getattr(self.delta, op, None) is not None
-                and op.startswith('__')
-                and op.endswith('__')):
+            can_set = (getattr(self.__class__, op, None) is None and
+                       getattr(self.delta, op, None) is not None and
+                       op.startswith('__') and
+                       op.endswith('__'))
+            if can_set:
                 try:
                     setattr(self.__class__, op, self._create_method(op))
                 except (AttributeError, TypeError):
@@ -72,7 +73,9 @@ class Result(object):
 
     def _create_method(self, op):
         fn = getattr(self.delta, op)
+
         def method(cls, other, *args, **kwargs):
             delta = fn(other.delta)
-            return Result(self.total_seconds(delta))
+            return Result(seconds=self.total_seconds(delta), wpm=self.wpm)
+
         return method

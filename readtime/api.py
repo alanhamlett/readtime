@@ -13,28 +13,28 @@
 from . import utils
 
 
-def of_text(text):
+def of_text(text, wpm=None):
     """Get the read time of some text.
 
     :param text:  String of text (Assumes utf-8).
     """
 
-    return utils.read_time(text, format='text')
+    return utils.read_time(text, format='text', wpm=wpm)
 
 
-def of_html(html):
+def of_html(html, wpm=None):
     """Get the read time of some HTML.
 
     :param html:  String of HTML.
     """
 
-    return utils.read_time(html, format='html')
+    return utils.read_time(html, format='html', wpm=wpm)
 
 
-def of_markdown(markdown):
+def of_markdown(markdown, wpm=None):
     """Get the read time of some Markdown.
 
     :param markdown:  String of Markdown.
     """
 
-    return utils.read_time(markdown, format='markdown')
+    return utils.read_time(markdown, format='markdown', wpm=wpm)
