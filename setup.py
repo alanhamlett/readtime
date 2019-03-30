@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from setuptools import setup
 
 about = {}
@@ -15,7 +17,7 @@ setup(
     version=about['__version__'],
     license=about['__license__'],
     description=about['__description__'],
-    long_description=open('README.md').read(),
+    long_description=open('README.md', encoding="utf-8").read(),
     long_description_content_type='text/markdown',
     author=about['__author__'],
     author_email=about['__author_email__'],
