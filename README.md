@@ -8,7 +8,7 @@ Calculates the time some text takes the average human to read, based on Medium's
 
 ### Algorithm
 
-Medium’s Help Center says,
+Medium's Help Center says,
 
 > Read time is based on the average reading speed of an adult (roughly 265 WPM). We take the total word count of a post and translate it into minutes, with an adjustment made for images. For posts in Chinese, Japanese and Korean, it's a function of number of characters (500 characters/min) with an adjustment made for images.
 
