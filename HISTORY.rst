@@ -3,6 +3,13 @@ History
 -------
 
 
+1.1.1 (2019-04-03)
+++++++++++++++++++
+
+- Remove non-ascii character from readme to prevent setuptools error.
+  `#5 <https://github.com/alanhamlett/readtime/issues/5>`_
+
+
 1.1.0 (2019-02-13)
 ++++++++++++++++++
 
