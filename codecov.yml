@@ -1,0 +1,3 @@
+ignore:
+  - "*/python?.?/*"
+comment: false
