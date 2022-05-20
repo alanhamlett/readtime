@@ -3,6 +3,14 @@ History
 -------
 
 
+2.0.0 (2022-05-19)
+++++++++++++++++++
+
+- Drop Python 2 support.
+- Upgrade markdown2 dependency to fix CVE-2018-5773.
+  `#6 <https://github.com/alanhamlett/readtime/pull/6>`_
+
+
 1.1.1 (2019-04-03)
 ++++++++++++++++++
 
