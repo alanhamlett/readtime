@@ -1,6 +1,6 @@
 # readtime
 
-[![Tests](https://travis-ci.org/alanhamlett/readtime.svg?branch=master)](https://travis-ci.org/alanhamlett/readtime)
+[![Tests](https://img.shields.io/github/workflow/status/alanhamlett/readtime/Tests/master)](https://github.com/alanhamlett/readtime/actions/workflows/tests.yml)
 [![Coverage](https://coveralls.io/repos/github/alanhamlett/readtime/badge.svg?branch=master)](https://coveralls.io/github/alanhamlett/readtime?branch=master)
 
 Calculates the time some text takes the average human to read, based on Medium's [read time forumula](https://help.medium.com/hc/en-us/articles/214991667-Read-time).
