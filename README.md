@@ -37,34 +37,34 @@ Or if you like to live dangerously:
 Import `readtime` and pass it some text, HTML, or Markdown to get back the time it takes to read:
 
     >>> import readtime
-    >>> result = readtime.of_text('The shortest blog post in the world!')
+    >>> result = readtime.of_text("The shortest blog post in the world!")
     >>> result.seconds
     2
     >>> result.text
-    u'1 min'
+    "1 min"
 
 The result can also be used as a string:
 
-    >>> str(readtime.of_text('The shortest blog post in the world!'))
-    u'1 min read'
+    >>> str(readtime.of_text("The shortest blog post in the world!"))
+    "1 min read"
 
 To calculate read time of Markdown:
 
-    >>> readtime.of_markdown('This is **Markdown**')
+    >>> readtime.of_markdown("This is **Markdown**")
     1 min read
 
 To calculate read time of HTML:
 
-    >>> readtime.of_html('This is <strong>HTML</strong>')
+    >>> readtime.of_html("This is <strong>HTML</strong>")
     1 min read
 
 To customize the WPM (default 265):
 
-    >>> result = readtime.of_text('The shortest blog post in the world!', wpm=5)
+    >>> result = readtime.of_text("The shortest blog post in the world!", wpm=5)
     >>> result.seconds
     96
     >>> result.text
-    u'2 min'
+    "2 min"
     >>> result.wpm
     5
 
