@@ -1,2 +1,2 @@
-include README.rst LICENSE HISTORY.rst requirements.txt
+include README.rst LICENSE CHANGES.md requirements.txt
 recursive-include readtime *.py
