@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
     readtime.utils
     ~~~~~~~~~~~~~~
@@ -10,16 +9,15 @@
 """
 
 
-from __future__ import division
+
+import math
+import re
 
 import lxml
-import math
 import markdown2
-import re
 from pyquery import PyQuery as pq
 
 from .result import Result
-from ._compat import u
 
 DEFAULT_WPM = 265  # Medium says they use 275 WPM but they actually use 265
 WORD_DELIMITER = re.compile(r'\W+')
@@ -55,7 +53,7 @@ def read_time(content, format=None, wpm=None):
         seconds = read_time_as_seconds(text, images=images, wpm=wpm)
 
     else:
-        raise Exception(u('Unsupported format: {0}').format(format))
+        raise Exception(f'Unsupported format: {format}')
 
     return Result(seconds=seconds, wpm=wpm)
 
@@ -75,11 +73,11 @@ def read_time_as_seconds(text, images=0, wpm=None):
     except (AttributeError, TypeError):
         num_words = 0
 
-    seconds = int(math.ceil(num_words / wpm * 60))
+    seconds = math.ceil(num_words / wpm * 60)
 
     # add extra seconds for inline images
     delta = 12
-    for img in range(images):
+    for _ in range(images):
         seconds += delta
         if delta > 3:
             delta -= 1

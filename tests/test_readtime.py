@@ -1,11 +1,6 @@
-# -*- coding: utf-8 -*-
-
-
-import readtime
-
 import unittest
 
-from .utils import u
+import readtime
 from readtime.utils import DEFAULT_WPM
 
 
@@ -19,53 +14,53 @@ class BaseTestCase(unittest.TestCase):
             text = word * 265 * x
             result = readtime.of_text(text)
             self.assertEqual(result.seconds, x * 60 if x > 0 else 1)
-            self.assertEqual(result.text, u('{0} min'.format(x if x > 0 else 1)))
-            self.assertEqual(u(result), u('{0} min read'.format(x if x > 0 else 1)))
+            self.assertEqual(result.text, f'{x if x > 0 else 1} min')
+            self.assertEqual(str(result), f'{x if x > 0 else 1} min read')
 
             # test the maximum + 1 num words, and make sure read time is x + 1
             text += 'word'
             result = readtime.of_text(text)
             self.assertEqual(result.seconds, x * 60 + 1)
-            self.assertEqual(result.text, u('{0} min'.format(x + 1)))
-            self.assertEqual(u(result), u('{0} min read'.format(x + 1)))
+            self.assertEqual(result.text, f'{x + 1} min')
+            self.assertEqual(str(result), f'{x + 1} min read')
 
     def test_plain_text(self):
         inp = open('tests/samples/plain_text.txt').read()
         result = readtime.of_text(inp)
         self.assertEqual(result.seconds, 154)
         self.assertEqual(type(result.seconds), int)
-        self.assertEqual(result.text, u('3 min'))
-        self.assertEqual(u(result), u('3 min read'))
+        self.assertEqual(result.text, '3 min')
+        self.assertEqual(str(result), '3 min read')
 
     def test_plain_text_empty(self):
         result = readtime.of_text('')
         self.assertEqual(result.seconds, 1)
-        self.assertEqual(result.text, u('1 min'))
-        self.assertEqual(u(result), u('1 min read'))
+        self.assertEqual(result.text, '1 min')
+        self.assertEqual(str(result), '1 min read')
 
     def test_plain_text_null(self):
         result = readtime.of_text(None)
         self.assertEqual(result.seconds, 0)
-        self.assertEqual(result.text, u('1 min'))
-        self.assertEqual(u(result), u('1 min read'))
+        self.assertEqual(result.text, '1 min')
+        self.assertEqual(str(result), '1 min read')
 
     def test_markdown(self):
         inp = open('tests/samples/markdown.md').read()
         result = readtime.of_markdown(inp)
         self.assertEqual(result.seconds, 236)
-        self.assertEqual(result.text, u('4 min'))
-        self.assertEqual(u(result), u('4 min read'))
+        self.assertEqual(result.text, '4 min')
+        self.assertEqual(str(result), '4 min read')
 
     def test_html(self):
         inp = open('tests/samples/html.html').read()
         result = readtime.of_html(inp)
         self.assertEqual(result.seconds, 236)
-        self.assertEqual(result.text, u('4 min'))
-        self.assertEqual(u(result), u('4 min read'))
+        self.assertEqual(result.text, '4 min')
+        self.assertEqual(str(result), '4 min read')
 
     def test_plain_text_unicode(self):
         result = readtime.of_text('Some simple text')
-        self.assertEqual(str(result), u('1 min read'))
+        self.assertEqual(str(result), '1 min read')
 
     def test_unsupported_format(self):
         with self.assertRaises(Exception) as e:
@@ -89,19 +84,19 @@ class BaseTestCase(unittest.TestCase):
         result = (result1 + result2)
         self.assertEqual(result.seconds, 154 + 236)
         self.assertEqual(type(result.seconds), int)
-        self.assertEqual(result.text, u('7 min'))
-        self.assertEqual(u(result), u('7 min read'))
+        self.assertEqual(result.text, '7 min')
+        self.assertEqual(str(result), '7 min read')
 
     def test_custom_wpm(self):
         text = 'some test content ' * 100
         result = readtime.of_text(text)
         self.assertEqual(result.wpm, DEFAULT_WPM)
         self.assertEqual(result.seconds, 68)
-        self.assertEqual(result.text, u('2 min'))
+        self.assertEqual(result.text, '2 min')
         wpm = 50
         result = readtime.of_text(text, wpm=wpm)
         self.assertEqual(result.wpm, wpm)
         self.assertEqual(result.seconds, 360)
         self.assertEqual(type(result.seconds), int)
-        self.assertEqual(result.text, u('6 min'))
-        self.assertEqual(u(result), u('6 min read'))
+        self.assertEqual(result.text, '6 min')
+        self.assertEqual(str(result), '6 min read')
