@@ -2,6 +2,15 @@
 # CHANGES
 
 
+## 3.0.0 (2023-07-22)
+
+- Drop Python <= 3.7 support.
+- Add support for Python 3.11.
+  [#8](https://github.com/alanhamlett/readtime/pull/8)
+- Remove Python2 relics.
+  [#9](https://github.com/alanhamlett/readtime/pull/9)
+
+
 ## 2.0.0 (2022-05-19)
 
 - Drop Python 2 support.
