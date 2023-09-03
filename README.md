@@ -3,7 +3,7 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/alanhamlett/readtime/tests.yml?branch=master)](https://github.com/alanhamlett/readtime/actions/workflows/tests.yml)
 [![Coverage](https://codecov.io/gh/alanhamlett/readtime/branch/master/graph/badge.svg?token=EbUnuwbra3)](https://codecov.io/gh/alanhamlett/readtime)
 
-Calculates the time some text takes the average human to read, based on Medium's [read time forumula](https://help.medium.com/hc/en-us/articles/214991667-Read-time).
+Calculates the time some text takes the average human to read, based on Medium's [read time formula](https://help.medium.com/hc/en-us/articles/214991667-Read-time).
 
 
 ### Algorithm
